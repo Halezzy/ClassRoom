@@ -1,91 +1,129 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Página de Boas-Vindas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPages com Python e Streamlit</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f2f2f2;
             margin: 0;
             padding: 0;
+            background-color: #f0f0f0;
         }
-
-        h1 {
-            color: #333;
-        }
-
-        .container {
-            width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
+        header {
+            background-color: #0072b5;
+            color: white;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
-
-        form {
-            text-align: left;
+        h1 {
+            margin: 0;
+            font-size: 32px;
         }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #333;
+        h2 {
+            font-size: 24px;
         }
-
-        input {
-            width: 100%;
+        nav {
+            background-color: #e0e0e0;
             padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
         }
-
-        button {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 3px;
-            cursor: pointer;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        button:hover {
-            background-color: #555;
+        .topic {
+            padding: 10px;
+        }
+        .code {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
         }
     </style>
 </head>
-
 <body>
-    <h1>Bem-Vindo</h1>
-
+    <header>
+        <h1>WebPages com Python e Streamlit</h1>
+        <h2>prof. Hugo Alessi</h2>
+    </header>
+    <nav>
+        <select id="selectTopic">
+            <option value="Apresentacao">Apresentação</option>
+            <option value="Tutorial">Tutorial de Instalação</option>
+            <option value="ListaElementos">Lista de Elementos e Códigos</option>
+        </select>
+    </nav>
     <div class="container">
-        <h2>Registre-se</h2>
-        <form action="processar_registro.php" method="POST">
-            <label for="signup-username">Nome de usuário:</label>
-            <input type="text" id="signup-username" name="signup-username" required>
-
-            <label for="signup-password">Senha:</label>
-            <input type="password" id="signup-password" name="signup-password" required>
-
-            <button type="submit">Registrar</button>
-        </form>
-
-        <h2>Entrar</h2>
-        <form action="processar_login.php" method="POST">
-            <label for="signin-username">Nome de usuário:</label>
-            <input type="text" id="signin-username" name="signin-username" required>
-
-            <label for="signin-password">Senha:</label>
-            <input type="password" id="signin-password" name="signin-password" required>
-
-            <button type="submit">Entrar</button>
-        </form>
+        <div id="content" class="topic">
+            <h2>Criando Páginas Web com Streamlit</h2>
+            <p>Streamlit é uma biblioteca de código aberto em Python projetada para simplificar o processo de criação de aplicativos da web
+                interativos e painéis de controle.</p>
+        </div>
+        <div id="code" class="code">
+            <pre>
+st.title('Título')
+st.write('Texto')
+            </pre>
+        </div>
     </div>
-</body>
+    <script>
+        const selectTopic = document.getElementById('selectTopic');
+        const content = document.getElementById('content');
+        const code = document.getElementById('code');
 
+        selectTopic.addEventListener('change', function () {
+            const topic = selectTopic.value;
+            if (topic === 'Apresentacao') {
+                content.innerHTML = `
+                    <h2>Criando Páginas Web com Streamlit</h2>
+                    <p>Streamlit é uma biblioteca de código aberto em Python projetada para simplificar o processo de criação de aplicativos da web
+                    interativos e painéis de controle.</p>
+                `;
+                code.innerHTML = `
+                    <pre>
+st.title('Título')
+st.write('Texto')
+                    </pre>
+                `;
+            } else if (topic === 'Tutorial') {
+                content.innerHTML = `
+                    <h2>Tutorial: Como Instalar o Streamlit</h2>
+                    <p>Para começar a usar o Streamlit, siga estas etapas:</p>
+                `;
+                code.innerHTML = `
+                    <pre>
+# Passo 1: Instale o Streamlit pelo Prompt de comando CMD
+st.code("pip install streamlit")
+st.write("Em caso de erro pyarrow.")
+st.code("pip install --extra-index-url https://pypi.fury.io/arrow-nightlies/ --prefer-binary --pre pyarrow")
+
+# Passo 2: Em Desktop, crie o arquivo app.py
+# Pode-se utilizar o Visual Code
+
+# Passo 3: Escreva seu código Streamlit
+st.code("import streamlit as st")
+st.code("st.title('Meu Primeiro Aplicativo Streamlit')")
+st.code("st.header('Meu Primeiro Aplicativo Streamlit')")
+st.code("st.subheader('Meu Primeiro Aplicativo Streamlit')")
+                    </pre>
+                `;
+            } else if (topic === 'ListaElementos') {
+                content.innerHTML = `
+                    <h2>Lista de Elementos e Códigos para Construção de Páginas</h2>
+                    <p>Título e Texto</p>
+                `;
+                code.innerHTML = `
+                    <pre>
+st.title('Título')
+st.write('Texto')
+                    </pre>
+                `;
+            }
+        });
+    </script>
+</body>
 </html>
